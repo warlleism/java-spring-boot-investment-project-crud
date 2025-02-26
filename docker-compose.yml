@@ -1,0 +1,14 @@
+services:
+  mysql:
+    image: "mysql:latest"
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    environment:
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: mydatabase
+      MYSQL_ROOT_PASSWORD: verysecret
+    volumes:
+      - "./conf.d:/etc/mysql/conf.d"
