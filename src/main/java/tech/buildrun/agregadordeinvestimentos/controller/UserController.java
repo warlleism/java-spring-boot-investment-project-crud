@@ -44,9 +44,10 @@ public class UserController {
         }
     }
 
-    @GetMapping("/users")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    @GetMapping("")
+    public ResponseEntity<List<User>> listUsers() {
+        var user = userService.listUsers();
+        return ResponseEntity.ok(user);
     }
 
     @DeleteMapping("/delete/{userId}")
@@ -56,9 +57,8 @@ public class UserController {
     }
 
     @PostMapping("/update/{userId}")
-    public ResponseEntity<Void> updateUser(@PathVariable("userId") String userId,
-            @RequestBody CreateUserDto createUserDto) {
-        userService.updateUser(userId, createUserDto);
+    public ResponseEntity<Void> updateUser(@PathVariable("userId") String userId, @RequestBody UpdateUserDto updateUserDto) {
+        userService.updateUserById(userId, updateUserDto);
         return ResponseEntity.noContent().build();
     }
 
